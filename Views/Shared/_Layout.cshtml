@@ -22,7 +22,12 @@
     </environment> -->
 </head>
 <body>
-      
+@{
+  @using Microsoft.AspNetCore.Http
+  @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+  var user = (string)@HttpContextAccessor.HttpContext.Session.GetString("user");
+  var username = (string)@HttpContextAccessor.HttpContext.Session.GetString("username");
+}
 <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Property Master</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,12 +55,21 @@
     
 
       <ul class="nav navbar-nav navbar-right">
-  
         <li class="nav-item dropdown">
-        <a href="" class="nav-link text-light font-weight-bold" id="navbarDropdownMenuLink-4"  data-toggle="modal" data-target="#exampleModal">
-           Log in </a>
-  
-      </li>
+          @if(user == null)
+          {
+            <a href="" class="nav-link text-light font-weight-bold" id="navbarDropdownMenuLink-4"  data-toggle="modal" data-target="#exampleModal">
+             Log in</a>
+          }
+          @if(user!=null)
+          {
+            
+                        <a asp-area="" asp-controller="Auth" asp-action="Logout" class="nav-link text-light font-weight-bold" id="navbarDropdownMenuLink-4" >
+            <p>Hi! @user</p> Log out </a>
+            
+
+          }
+       </li>
     </ul>
   </div>
 
@@ -73,8 +87,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <div class="nav nav-tabs">
-        <a class="nav-item nav-link active" id="list-home-list" data-toggle="list" href="#list-home" aria-controls="home"> <h5 class="modal-title" id="exampleModalLabel">Log in</h5></a>
-        <a class="nav-item nav-link" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile"> <h5 class="modal-title" id="exampleModalLabel">Register</h5></a>
+        <a class="nav-item nav-link active" id="list-home-list" data-toggle="list" href="#list-login" aria-controls="home"> <h5 class="modal-title" id="exampleModalLabel">Log in</h5></a>
+        <a class="nav-item nav-link" id="list-profile-list" data-toggle="list" href="#list-register" role="tab" aria-controls="profile"> <h5 class="modal-title" id="exampleModalLabel">Register</h5></a>
         </div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -86,44 +100,65 @@
 
   <div class="col-12">
     <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+      <div class="tab-pane fade show active" id="list-login" role="tabpanel" aria-labelledby="list-home-list">
          <div class="container">
+           <form action="/auth/login" method="post">
           <div class="row">
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1">
+              <input type="text" name="email" class="form-control" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1">
             </div>
           </div>
            <div class="row">
             <div class="input-group mb-3">
-              <input type="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+              <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
             </div>
           </div>
           <div  class="row">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Log in</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Log in</button>
           </div>
+          </form>
         </div>
 
       </div>
-      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+      <div class="tab-pane fade" id="list-register" role="tabpanel" aria-labelledby="list-profile-list">
           <div class="container">
-          <div class="row">
+            <div class="row">
+            
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1">
+            <span id='message'></span>
             </div>
-          </div>
-           <div class="row">
-            <div class="input-group mb-3">
-              <input type="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
             </div>
-          </div>
-          <div class="row">
-            <div class="input-group mb-3">
-              <input type="password" class="form-control" placeholder="Re-Enter Password" aria-label="Username" aria-describedby="basic-addon1">
+          <form action="/auth/register" method="post">
+            <div class="row">
+              
+              <div class="input-group mb-3">
+                <input type="text" name="email" class="form-control" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1" required>
+              </div>
             </div>
-          </div>
-          <div  class="row">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Register</button>
-          </div>
+            <div class="row">
+              <div class="input-group mb-3">
+                <input type="password" name="password" id="password" class="form-control pw" placeholder="Password" aria-label="" aria-describedby="basic-addon1" >
+            
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-group mb-3">
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control pw" placeholder="Re-Enter Password" aria-label="" aria-describedby="" >
+              
+              </div>
+            </div>
+ 
+           
+            <div class="row">
+              <div class="input-group mb-3">
+                <input type="text" name="firstname" class="form-control" placeholder="First Name" required >
+                <input type="text" name="lastname" class="form-control" placeholder="Last Name" required>
+              </div>
+            </div>
+            <div  class="row">
+              <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+            </div>
+          </form>
         </div>
       </div>
    
@@ -162,5 +197,17 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
+    <!-- <script>
+        $('#password, #confirm_password').on('keyup', function () {
+          if ($('#password').val() == $('#confirm_password').val()) {
+            $('#message').html('Passwords are Matching').css('color', 'green');
+          }else if($('#password').val() ==null){
+            alert("empty");
+          }else 
+            $('#message').html("Those Passwords didn't match. Try Again." ).css('color', 'red');
+            
+        });
+    </script> -->
 </body>
 </html>

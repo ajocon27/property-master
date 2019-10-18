@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using property_master.Models;
+using MySql.Data.MySqlClient;
+
 
 namespace property_master.Controllers
 {
@@ -12,6 +14,7 @@ namespace property_master.Controllers
     {
         public IActionResult Index()
         {
+            
             return View();
         }
 
