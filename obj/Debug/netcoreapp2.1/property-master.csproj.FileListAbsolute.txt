@@ -64,3 +64,5 @@ D:\Documents\programs\property-master\obj\Debug\netcoreapp2.1\property-master.Vi
 D:\Documents\programs\property-master\obj\Debug\netcoreapp2.1\property-master.dll
 D:\Documents\programs\property-master\obj\Debug\netcoreapp2.1\property-master.pdb
 D:\Documents\programs\property-master\obj\Debug\netcoreapp2.1\property-master.csproj.CopyComplete
+D:\Documents\programs\property-master\obj\Debug\netcoreapp2.1\Razor\Views\Property\add_listing.g.cshtml.cs
+D:\Documents\programs\property-master\obj\Debug\netcoreapp2.1\Razor\Views\Property\add_description.g.cshtml.cs

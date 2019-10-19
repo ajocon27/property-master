@@ -1,0 +1,46 @@
+@{
+    ViewData["Title"] = "Post Ad";    
+    
+
+
+}
+          <div class="row">
+            <div class="col-md-10 mx-auto">
+                <div class="card text-center" style="margin-top:5%;">
+                <div class="card-header">
+                <h5 class="card-title">Post Ad</h5>
+                </div>
+                <div class="card-body">
+                    
+                    <p class="card-text">
+                        <form action="/property/add_description" method="get">
+                        <div class="row">
+                            <div class="input-group input-group-lg col-5 mx-auto ">
+                                <input type="text" placeholder="Ad Title"  class="form-control" name="property_name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                            
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="input-group-lg col-5 mx-auto mt-md-3">
+                            
+                                <select class="custom-select" name="category"  id="inputGroupSelect01">
+                                    <option selected>Choose Category</option>
+                                    <option value="1">Houses for Sale</option>
+                                    <option value="2">Condos for Sale</option>
+                                </select>
+                                </div>
+                             </div>
+         
+                        <div class="row">
+                            <div class="input-group input-group-lg col-5 mx-auto mt-md-3">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Next</button>
+                            </div>
+                        </div>
+                        </form>
+                    </p>
+                    
+                </div>
+                </div>
+            </div>
+          </div>
