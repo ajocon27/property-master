@@ -41,7 +41,7 @@ namespace property_master.Controllers
           return View();
         }
         [HttpPost]
-        public IActionResult add_description(IFormFile outside)
+        public IActionResult add_description(IFormFile outside,string property_name)
         {
         //   var con = this.CreateConnection();
         //   string cText = $"select * from products where id = {id}";

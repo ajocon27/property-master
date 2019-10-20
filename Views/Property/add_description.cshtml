@@ -55,6 +55,7 @@
   font-size:15px;
 }
 </style>
+<form action="/property/add_description" method="post">
           <div class="row">
             <div class="col-md-10 mx-auto">
                 <div class="card text-center" style="margin-top:1%;">
@@ -64,7 +65,7 @@
                 <div class="card-body">
                     
                     <p class="card-text">
-                        <form action="/property/add_description" method="post">
+                        
                             <div class="row">
 
                             <div class="input-group-lg col-5 mx-auto mt-md-3">
@@ -87,7 +88,7 @@
 
                             <div class="input-group-lg col-5 mx-auto mt-md-3">
                             
-                                <select class="custom-select" name="category" id="inputGroupSelect01">
+                                <select class="custom-select" name="category" id="inputGroupSelect02">
                                 <option value="0" selected>How Many Bathrooms</option>
                                 <option value="1" >1</option>
                                 <option value="2" >2</option>
@@ -150,14 +151,9 @@
                             <input type="text" class="form-control" id="inputZip" placeholder="Postal">
                             </div>
                         </div>
-                            
-                 
-
-                    </p>
-                    
+                    </p>            
                 </div>
-                </div>
-                
+                </div>         
             </div>
           </div>
         
@@ -165,62 +161,86 @@
 
     <div class="card mt-md-3">
 
-  <div class="card-body mt-md-3">
-    <h4 class="card-title text-center">Add Photos to attract interest to your ad</h4>
-       
-   <div class="row mx-auto">
-    <br><div class="container">
-                        <div class="row">
-                        <div class="col-sm-2 imgUp">
-                            <div class="imagePreview"></div>
-                        <label class="btn btn-primary">
-				Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-				</label>
-        </div><!-- col-2 -->
-        <i class="fa fa-plus imgAdd"></i>
-        </div><!-- row -->
-        </div><!-- container -->
+        <div class="card-body mt-md-3">
+            <h4 class="card-title text-center">Add Photos to attract interest to your ad</h4>
 
 
-  </div>
-  </div>
-                        <div class="row ">
-                            <div class="input-group input-group-lg col-5 mx-auto mt-md-3">
-                                <button type="Submit" class="btn btn-primary btn-lg btn-block">Post Your Ad</button>
-                            </div>
-                        </div>
-
-            </form>
+            <div class="row">
+                <div class="col-12">
+                
+                    <div class="file-loading">
+                        <input id="input-fas-25" type="file" multiple>
+                    </div>
                 </div>
-          </div>
-          </div>
+            </div>
+            
+            <div class="row ">
+                <div class="col-12">    
+                    <div class="input-group input-group-lg col-5 mx-auto mt-md-3">
+                        <button type="Submit" id="submit-button" class="btn btn-primary btn-lg btn-block" disabled>Post Your Ad</button>
+                    </div>
+                </div>
+            </div>  
+             
+        </div>
+    </div>
 
 
 
- <script>
-$(".imgAdd").click(function(){
-  $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+</div>
+</form>
+
+
+
+<script>
+$(document).ready(function() {
+  var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
+        url2 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg';
+    $("#input-fas-25").fileinput({
+        theme:"fas",
+        uploadUrl: "/FileUpload/uploadfile",
+        maxFileCount: 5,
+         initialPreview: [url1, url2],
+          initialPreviewAsData: true,
+        initialPreviewConfig: [
+            {caption: "Moon.jpg", downloadUrl: url1, size: 930321, width: "120px", key: 1},
+            {caption: "Earth.jpg", downloadUrl: url2, size: 1218822, width: "120px", key: 2}
+        ],
+        uploadAsync: false,
+        deleteUrl: "/site/file-delete",
+        overwriteInitial: true,
+        maxFileSize: 500
+  
+}).on('filebatchuploadsuccess', function(event, data) {
+       var form = data.form, files = data.files, extra = data.extra,
+        response = data.response, reader = data.reader;
+
 });
-$(document).on("click", "i.del" , function() {
-	$(this).parent().remove();
+
 });
-$(function() {
-    $(document).on("change",".uploadFile", function()
-    {
-    		var uploadFile = $(this);
-        var files = !!this.files ? this.files : [];
-        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
- 
-        if (/^image/.test( files[0].type)){ // only image file
-            var reader = new FileReader(); // instance of the FileReader
-            reader.readAsDataURL(files[0]); // read the local file
- 
-            reader.onloadend = function(){ // set image data as background of div
-                //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
-            }
-        }
-      
+
+
+
+
+</script>
+<!--SAMPLE-->
+<!-- <script>
+$(document).ready(function() {
+    var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
+        url2 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg';
+    $("#input-fas-25").fileinput({
+        theme:"fas",
+        initialPreview: [url1, url2],
+        initialPreviewAsData: true,
+        initialPreviewConfig: [
+            {caption: "Moon.jpg", filename: "MoonFull.jpg", downloadUrl: url1, size: 930321, width: "120px", key: 1},
+            {caption: "Earth.jpg", filename: "EarthFull.jpg", downloadUrl: url2, size: 1218822, width: "120px", key: 2}
+        ],
+        deleteUrl: "/site/file-delete",
+        overwriteInitial: true,
+        maxFileSize: 500,
+        initialCaption: "The Moon and the Earth"
     });
 });
-          </script>
+
+</script> -->
