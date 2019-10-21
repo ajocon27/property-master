@@ -66,3 +66,6 @@ D:\Documents\programs\property-master\obj\Debug\netcoreapp2.1\property-master.pd
 D:\Documents\programs\property-master\obj\Debug\netcoreapp2.1\property-master.csproj.CopyComplete
 D:\Documents\programs\property-master\obj\Debug\netcoreapp2.1\Razor\Views\Property\add_listing.g.cshtml.cs
 D:\Documents\programs\property-master\obj\Debug\netcoreapp2.1\Razor\Views\Property\add_description.g.cshtml.cs
+d:\Documents\programs\property-master\obj\Debug\netcoreapp2.1\Razor\Views\Property\add_photo.g.cshtml.cs
+d:\Documents\programs\property-master\obj\Debug\netcoreapp2.1\Razor\Views\Home\MyAds.g.cshtml.cs
+d:\Documents\programs\property-master\obj\Debug\netcoreapp2.1\Razor\Views\Home\Profile.g.cshtml.cs

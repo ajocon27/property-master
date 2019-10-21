@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Upload Photos";    
+    
+
+
+}
+<div class="container-fluid ">
+          <div class="row ">
+            <div class="col-md-10 mx-auto">
+                <div class="card text-center" style="margin-top:5%;">
+                <div class="card-header">
+                <h5 class="card-title">Add photos to attract interest to your ad</h5>
+                </div>
+                <div class="card-body">
+                
+                    
+                        <div class="row file">
+                           
+                                <div class="file-loading">
+                                    <input id="input-fas-25" type="file" multiple>
+                                </div>
+                            
+                        </div>
+
+
+                   
+                    
+                </div>
+                </div>
+            </div>
+          </div>
+</div>
+<script>
+$(document).ready(function() {
+    var photo_group_id=@ViewData["photo_group_id"];
+ 
+    $("#input-fas-25").fileinput({
+        theme:"fas",
+        uploadUrl: "/FileUpload/uploadfile",
+        maxFileCount: 5,
+        initialPreviewAsData: true,
+        uploadAsync: false,
+        deleteUrl: "/site/file-delete",
+        overwriteInitial: true,
+        maxFileSize: 500,
+        uploadExtraData: {
+            photogroupid: photo_group_id,
+        } 
+  
+}).on('filebatchuploadsuccess', function(event, data) {
+       var form = data.form, files = data.files, extra = data.extra,
+        response = data.response, reader = data.reader;
+
+});
+$(".file").find('.file-input').addClass( "col " );
+  $(".file").find('.file-preview').addClass( "row " );
+ $(".file").find('.file-drop-zone').addClass( "col " );
+});
+
+
+
+
+</script>

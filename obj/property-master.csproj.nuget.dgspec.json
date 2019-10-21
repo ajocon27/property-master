@@ -62,6 +62,14 @@
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.18, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            },
+            "WebApiContrib.Formatting.JavaScriptSerializer": {
+              "target": "Package",
+              "version": "[0.9.4, )"
             }
           },
           "imports": [

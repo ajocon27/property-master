@@ -15,6 +15,7 @@ namespace property_master.Controllers
             
             return con; // return the created connection
         }
+        
         [HttpPost]
         // function to execute when user submits the login form
         public IActionResult Login(string email, string password)

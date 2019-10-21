@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using property_master.Models;
 using MySql.Data.MySqlClient;
-
-
+using Microsoft.AspNetCore.Http;
 namespace property_master.Controllers
 {
     public class HomeController : Controller
@@ -15,6 +14,21 @@ namespace property_master.Controllers
         public IActionResult Index()
         {
             
+            return View();
+        }
+        public IActionResult Profile()
+        {
+
+           UserInfo user=new UserInfo();
+            var us= HttpContext.Session.GetString("user");
+            ViewData["profile_photo"] = user.getuser(us).profile_photo;
+
+            return View();
+        }
+        public IActionResult MyAds()
+        {
+            ViewData["Message"] = "Your contact page.";
+
             return View();
         }
 

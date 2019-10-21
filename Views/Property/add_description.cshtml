@@ -5,56 +5,7 @@
 
 }
 
-<style>
-    .imagePreview {
-    width: 100%;
-    height: 180px;
-    background-position: center center;
-  background:url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
-  background-color:#fff;
-    background-size: cover;
-  background-repeat:no-repeat;
-    display: inline-block;
-  box-shadow:0px -3px 6px 2px rgba(0,0,0,0.2);
-}
-.btn-primary
-{
-  display:block;
-  border-radius:0px;
-  box-shadow:0px 4px 6px 2px rgba(0,0,0,0.2);
-  margin-top:-5px;
-}
-.imgUp
-{
-  margin-bottom:15px;
-}
-.del
-{
-  position:absolute;
-  top:0px;
-  right:15px;
-  width:30px;
-  height:30px;
-  text-align:center;
-  line-height:30px;
-  background-color:rgba(255,255,255,0.6);
-  cursor:pointer;
-}
-.imgAdd
-{
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  background-color:#4bd7ef;
-  color:#fff;
-  box-shadow:0px 0px 2px 1px rgba(0,0,0,0.2);
-  text-align:center;
-  line-height:30px;
-  margin-top:0px;
-  cursor:pointer;
-  font-size:15px;
-}
-</style>
+
 <form action="/property/add_description" method="post">
           <div class="row">
             <div class="col-md-10 mx-auto">
@@ -63,24 +14,24 @@
                 <h5 class="card-title">@title</h5>
                 </div>
                 <div class="card-body">
-                    
+                     <h5 class="card-title">Add Details</h5>
                     <p class="card-text">
                         
                             <div class="row">
 
                             <div class="input-group-lg col-5 mx-auto mt-md-3">
                             
-                                <select class="custom-select" name="category" id="inputGroupSelect01">
+                                <select class="custom-select" name="bedrooms" id="inputGroupSelect01">
                                 <option value="0" selected>How Many Bedrooms</option>
-                                 <option value="7" >Bachelor/Studio</option>
+                                 <option value="Bachelor/Studio" >Bachelor/Studio</option>
                                 <option value="1" >1</option>
-                                 <option value="8" >1 + Den</option>
+                                 <option value=">1 + Den" >1 + Den</option>
                                 <option value="2" >2</option>
-                                <option value="9" >2 + Den</option>
+                                <option value="2 + Den" >2 + Den</option>
                                 <option value="3" >3</option>  
                                 <option value="4" >4</option>
                                 <option value="5" >5</option>
-                                <option value="6" >6+</option>
+                                <option value="6+" >6+</option>
                                 </select>
                                 </div>
                              </div>
@@ -88,20 +39,26 @@
 
                             <div class="input-group-lg col-5 mx-auto mt-md-3">
                             
-                                <select class="custom-select" name="category" id="inputGroupSelect02">
+                                <select class="custom-select" name="bathrooms" id="inputGroupSelect02">
                                 <option value="0" selected>How Many Bathrooms</option>
                                 <option value="1" >1</option>
                                 <option value="2" >2</option>
                                 <option value="3" >3</option>  
                                 <option value="4" >4</option>
                                 <option value="5" >5</option>
-                                <option value="6" >6+</option>
+                                <option value="6+" >6+</option>
                                 </select>
                                 </div>
                              </div>
                         <div class="row">
                             <div class="input-group input-group-lg col-5 mx-auto mt-md-3 ">
                                 <input type="text" placeholder="Size (SQFT)" name="property_size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                            
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-group input-group-lg col-5 mx-auto mt-md-3 ">
+                                <input readonly type="text" placeholder="" name="category" value='@ViewData["category"]' class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
                             
                             </div>
                         </div>
@@ -120,7 +77,7 @@
                         <div class="row">
                             <div class=" input-group-lg col-5 mx-auto mt-md-3 ">
 
-                                <textarea class="form-control" placeholder="Description" aria-label="With textarea"></textarea>
+                                <textarea class="form-control" placeholder="Description" name="description" aria-label="With textarea"></textarea>
                             </div>     
                         </div>  
                             <div class="row">
@@ -128,62 +85,42 @@
 
                         <div class="form-group input-group-lg">
                             <label for="inputAddress"></label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="Address">
+                            <input type="text" class="form-control" name="address" id="inputAddress" placeholder="Address">
                         </div>
                         <div class="form-group input-group-lg">
                             <label for="inputAddress2"></label>
-                            <input type="text" class="form-control" id="inputAddress2" placeholder="Address 2">
+                            <input type="text" class="form-control" name="address2" id="inputAddress2" placeholder="Address 2">
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6 input-group-lg">
                             <!-- <label for="inputCity">City</label> -->
-                            <input type="text" class="form-control" id="inputCity" placeholder="City">
+                            <input type="text" class="form-control" name="city" id="inputCity" placeholder="City">
                             </div>
                             <div class="form-group col-md-4 input-group-lg">
                             <!-- <label for="inputState">Province</label> -->
-                            <select id="inputState" class="form-control">
+                            <select id="inputState" name="province" class="form-control">
                                 <option selected>Choose Province</option>
-                                <option>Manitoba</option>
+                                <option value="Manitoba">Manitoba</option>
                             </select>
                             </div>
                             <div class="form-group col-md-2 input-group-lg">
                             <!-- <label for="inputZip">Postal Code</label> -->
-                            <input type="text" class="form-control" id="inputZip" placeholder="Postal">
+                            <input type="text" class="form-control" name="postalcode" id="inputZip" placeholder="Postal">
                             </div>
                         </div>
+                        <div class="row ">
+                            <div class="col-12">    
+                                <div class="input-group input-group-lg col-5 mx-auto mt-md-3">
+                                    <button type="Submit" id="submit-button" class="btn btn-primary btn-lg btn-block">Next Step</button>
+                                </div>
+                        </div>
+                     </div>  
                     </p>            
                 </div>
                 </div>         
             </div>
           </div>
         
-
-
-    <div class="card mt-md-3">
-
-        <div class="card-body mt-md-3">
-            <h4 class="card-title text-center">Add Photos to attract interest to your ad</h4>
-
-
-            <div class="row">
-                <div class="col-12">
-                
-                    <div class="file-loading">
-                        <input id="input-fas-25" type="file" multiple>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row ">
-                <div class="col-12">    
-                    <div class="input-group input-group-lg col-5 mx-auto mt-md-3">
-                        <button type="Submit" id="submit-button" class="btn btn-primary btn-lg btn-block" disabled>Post Your Ad</button>
-                    </div>
-                </div>
-            </div>  
-             
-        </div>
-    </div>
 
 
 
@@ -194,18 +131,12 @@
 
 <script>
 $(document).ready(function() {
-  var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
-        url2 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg';
+  
     $("#input-fas-25").fileinput({
         theme:"fas",
         uploadUrl: "/FileUpload/uploadfile",
         maxFileCount: 5,
-         initialPreview: [url1, url2],
-          initialPreviewAsData: true,
-        initialPreviewConfig: [
-            {caption: "Moon.jpg", downloadUrl: url1, size: 930321, width: "120px", key: 1},
-            {caption: "Earth.jpg", downloadUrl: url2, size: 1218822, width: "120px", key: 2}
-        ],
+        initialPreviewAsData: true,
         uploadAsync: false,
         deleteUrl: "/site/file-delete",
         overwriteInitial: true,

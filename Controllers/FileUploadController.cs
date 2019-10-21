@@ -9,28 +9,43 @@ using Microsoft.AspNetCore.Mvc;
 using property_master.Models;
 using MySql.Data.MySqlClient;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace property_master.Controllers
 {
     public class FileUploadController : Controller
     {
-
+        private MySqlConnection CreateConnection()
+        {
+            string connection = "server=localhost;database=property-master;user=root;password=1234;port=3306"; // declaring a connection string
+            MySqlConnection con = new MySqlConnection(connection); // creating the connection
+            con.Open(); // openning the connection
+            return con; // return the created connection
+        }
         [HttpPost]
-        public IActionResult uploadfile(ICollection<IFormFile> file_data)
+        public IActionResult uploadfile(ICollection<IFormFile> file_data,int photogroupid)
         {   
             
-
+            var con = this.CreateConnection();   
             string pictureUrl = null;
 
             string userid="1";
             string userlist="1";
             string dir="wwwroot/images/"+userid+"/"+userlist;
-            string dir2=null;
+            ArrayList dir2 = new ArrayList();
+            ArrayList initialPreview1  = new ArrayList();
+            int i=0;
+            int keys=1;
+           
+            int photogroup=photogroupid;
+            string url;
+  
             if(file_data!=null)
             {
-
+ 
                 foreach(var p in file_data)
                 {
+                    
                     var fileName = Path.GetFileName(p.FileName);
                     Directory.CreateDirectory(dir);
                     var filePath = Path.Combine(Directory.GetCurrentDirectory(), @dir, fileName);
@@ -38,16 +53,26 @@ namespace property_master.Controllers
                     var stream = new FileStream(filePath, FileMode.Create);
                     p.CopyTo(stream);
                     pictureUrl = dir + fileName;
-                    dir2="https://localhost:5001/images/"+userid+"/"+userlist+fileName;
+                    //saving to JSON
+                    dir2.Add("'https://localhost:5001/images/"+userid+"/"+userlist+fileName+"'");
+                    url="https://localhost:5001/images/"+userid+"/"+userlist+fileName;
+                    initialPreview1.Add("{caption: '"+fileName+"', downloadUrl: '"+dir2[i]+"', width: '120px', key: "+keys.ToString()+"}");
+                    string cmdText = $"insert into photos(photo_name,photo_url,photo_group_id) values('{fileName}','{url}',{photogroup})";
+                    MySqlCommand cmd = new MySqlCommand(cmdText, con);
+
+                    cmd.ExecuteNonQuery();
+
+                    i++;
+                    keys++;
                 }
                 
-                
-
             }
-
-            string test="initialPreview: ['"+dir2+"'],initialPreviewConfig: [{caption: 'test.jpg', downloadUrl: '"+dir2+"', width: '120px', key: 1}],initialPreviewThumbTags:{append: true}";
-            // string test="{link':'<div class=\"alert alert-success\"><a class=\"btn btn-sm btn-success\" href=\"/uploads/resized.png\">Click here</a> to view / download your resized image file.</div>}";
-                        
+            var initialPreviewConfig = JsonConvert.SerializeObject(initialPreview1);
+           
+            string initialPreview = string.Join(",", dir2);
+          
+            string test="initialPreview: ["+initialPreview+"],initialPreviewConfig: "+initialPreviewConfig+",initialPreviewThumbTags:{append: true}";
+                         
             return Json(test);
         }
  

@@ -2660,7 +2660,7 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "Newtonsoft.Json/11.0.2": {
+      "Newtonsoft.Json/12.0.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
@@ -4576,6 +4576,18 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
+        }
+      },
+      "WebApiContrib.Formatting.JavaScriptSerializer/0.9.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Client": "4.0.20710"
+        },
+        "compile": {
+          "lib/net40/WebApiContrib.Formatting.JavaScriptSerializer.dll": {}
+        },
+        "runtime": {
+          "lib/net40/WebApiContrib.Formatting.JavaScriptSerializer.dll": {}
         }
       }
     }
@@ -7373,10 +7385,10 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/11.0.2": {
-      "sha512": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+    "Newtonsoft.Json/12.0.2": {
+      "sha512": "rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
       "type": "package",
-      "path": "newtonsoft.json/11.0.2",
+      "path": "newtonsoft.json/12.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7399,7 +7411,7 @@
         "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.11.0.2.nupkg.sha512",
+        "newtonsoft.json.12.0.2.nupkg.sha512",
         "newtonsoft.json.nuspec"
       ]
     },
@@ -12483,6 +12495,18 @@
         "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512",
         "system.xml.xpath.xmldocument.nuspec"
       ]
+    },
+    "WebApiContrib.Formatting.JavaScriptSerializer/0.9.4": {
+      "sha512": "8+K9WEklfCIC+guM71L51adHPK+KkEXWWsVn0TQP435J8rdET6Ta1e+WsXg5gxdwI7Vx0R7zSaYQw8m8I0NsFg==",
+      "type": "package",
+      "path": "webapicontrib.formatting.javascriptserializer/0.9.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/WebApiContrib.Formatting.JavaScriptSerializer.dll",
+        "webapicontrib.formatting.javascriptserializer.0.9.4.nupkg.sha512",
+        "webapicontrib.formatting.javascriptserializer.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -12491,7 +12515,9 @@
       "Microsoft.AspNetCore.Razor.Design >= 2.1.2",
       "Microsoft.AspNetCore.Session >= 2.1.1",
       "Microsoft.NETCore.App >= 2.1.0",
-      "MySql.Data >= 8.0.18"
+      "MySql.Data >= 8.0.18",
+      "Newtonsoft.Json >= 12.0.2",
+      "WebApiContrib.Formatting.JavaScriptSerializer >= 0.9.4"
     ]
   },
   "packageFolders": {
@@ -12556,6 +12582,14 @@
           "MySql.Data": {
             "target": "Package",
             "version": "[8.0.18, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[12.0.2, )"
+          },
+          "WebApiContrib.Formatting.JavaScriptSerializer": {
+            "target": "Package",
+            "version": "[0.9.4, )"
           }
         },
         "imports": [
@@ -12565,5 +12599,17 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'WebApiContrib.Formatting.JavaScriptSerializer 0.9.4' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "WebApiContrib.Formatting.JavaScriptSerializer",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    }
+  ]
 }

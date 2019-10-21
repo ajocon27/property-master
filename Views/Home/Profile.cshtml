@@ -1,0 +1,91 @@
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="container mt-md-5">
+    <div class="row">
+        <div class="col-md-7 mx-auto my-3 p-3 bg-white rounded shadow-sm ">
+            <h2>Details</h2>
+           <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">First Name</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                    
+                </div> 
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Last Name</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                   
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                   
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="float-left">Password</label>
+                    <a href=""> <label for="exampleInputPassword1" class="float-right">Change Password</label></a>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" readonly>
+                </div>
+ 
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+
+        </div>
+        <div class="col-md-5 mx-auto  mx-auto my-3 p-3 bg-white rounded shadow-sm">
+            <div class="row mx-auto">
+                <div class="col mt-md-5">
+                    <div class="text-center ">
+                        <img src='@ViewData["profile_photo"]' class="img-circle img-thumbnail rounded mx-auto" alt="avatar">
+                    </div>
+                </div>
+            </div>
+            <div class="row mx-auto">
+                <div class="col mt-md-3">
+                    <div class="text-center">
+                        <button type="button" id="uploadButton" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">Upload Profile Photo </button>       
+                       
+                    </div>
+                </div>
+            </div>  
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Change Profile Photo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+       <form action="/user/upload" method="post">
+      <div class="modal-body">
+         
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Choose a Photo</label>
+                <<input type="file" class="form-control" name="picture" placeholder="Picture">
+            </div>
+
+
+           
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+         
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
