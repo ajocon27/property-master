@@ -1,17 +1,81 @@
 @{
     ViewData["Title"] = "My Ads";
+    var properties = (List<Property>)ViewBag.list;
+
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div class="container mt-md-5">
+    <div class="row">
+        <div class="col-md-12 mx-auto my-3 p-3 bg-white rounded shadow-sm ">
+            <h2>Your Ads</h2>
+     <div class="container">
+          <div class="row">
+            @foreach (var p in properties)
+            {
+                
+            
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="@p.main_photo" alt="Card image cap">
+                <div class="card-body">
+                   <h5 class="card-title">@p.property_name</h5>
+                  <p class="card-text">@p.description</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            }
+ 
+          </div>
+        </div>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+        </div>
+
+    </div>
+  
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Change Profile Photo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form action="/user/upload" method="post" enctype="multipart/form-data">
+      <div class="modal-body">
+         
+         <div class="row">
+            <div class="col">
+            <div class="form-group">
+                
+                <label for="exampleFormControlFile1">Choose a Photo</label>
+                <input type="file" class="form-control" name="picture">
+                </div>
+            </div>
+        </div>
+
+           
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+         
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

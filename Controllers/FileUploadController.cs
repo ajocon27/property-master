@@ -54,8 +54,8 @@ namespace property_master.Controllers
                     p.CopyTo(stream);
                     pictureUrl = dir + fileName;
                     //saving to JSON
-                    dir2.Add("'https://localhost:5001/images/"+userid+"/"+userlist+fileName+"'");
-                    url="https://localhost:5001/images/"+userid+"/"+userlist+fileName;
+                    dir2.Add("'https://localhost:5001/images/"+userid+"/"+userlist+"/"+fileName+"'");
+                    url="https://localhost:5001/images/"+userid+"/"+userlist+"/"+fileName;
                     initialPreview1.Add("{caption: '"+fileName+"', downloadUrl: '"+dir2[i]+"', width: '120px', key: "+keys.ToString()+"}");
                     string cmdText = $"insert into photos(photo_name,photo_url,photo_group_id) values('{fileName}','{url}',{photogroup})";
                     MySqlCommand cmd = new MySqlCommand(cmdText, con);

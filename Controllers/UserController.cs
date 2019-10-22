@@ -49,8 +49,8 @@ namespace property_master.Controllers
                     picture.CopyTo(stream);
                     pictureUrl = dir + fileName;
                     
-                    dir2="'https://localhost:5001/images/profile/"+userid+"/"+fileName+"'";
-                    url="'https://localhost:5001/images/profile/"+userid+"/"+fileName+"'";
+                    dir2="https://localhost:5001/images/profile/"+userid+"/"+fileName;
+                    url="https://localhost:5001/images/profile/"+userid+"/"+fileName;
                     string cmdText = $"update users SET profile_photo= '{url}' where id={userid}";
                     MySqlCommand cmd = new MySqlCommand(cmdText, con);
 
@@ -61,5 +61,17 @@ namespace property_master.Controllers
             }
             return Redirect("/home/profile");
         }
-    }
+        [HttpPost]
+        public IActionResult update(string firstname,string lastname, string email, string password)
+        {
+            var con = this.CreateConnection();
+            UserInfo user=new UserInfo();
+            var us= HttpContext.Session.GetString("user");
+            int userid=user.getuser(us).id;
+            string cmdText = $"update users SET firstname= '{firstname}', lastname='{lastname}',email='{email}', password='{password}' where id={userid}";
+            MySqlCommand cmd = new MySqlCommand(cmdText, con);
+            HttpContext.Session.SetString("user", email);
+            return Redirect("/home/profile");
+        }
+    } 
 }

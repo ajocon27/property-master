@@ -19,16 +19,21 @@ namespace property_master.Controllers
         public IActionResult Profile()
         {
 
-           UserInfo user=new UserInfo();
+            UserInfo user=new UserInfo();
             var us= HttpContext.Session.GetString("user");
             ViewData["profile_photo"] = user.getuser(us).profile_photo;
-
+            ViewData["firstname"] = user.getuser(us).firstName;
+            ViewData["lastname"] = user.getuser(us).lastName;
+            ViewData["email"] = user.getuser(us).email;
+             ViewData["password"] = user.getuser(us).password;
             return View();
         }
         public IActionResult MyAds()
         {
-            ViewData["Message"] = "Your contact page.";
-
+            PropertyInfo properties=new PropertyInfo();
+            var us= HttpContext.Session.GetString("user");     
+            var list= properties.getproperty(us);
+             ViewData["list"] = list;
             return View();
         }
 

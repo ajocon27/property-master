@@ -77,7 +77,7 @@ using property_master.Models;
                         ");
             EndContext();
             BeginContext(489, 1477, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2cb57f8bf034924b2d3eafd20290d7e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "52347543d2e44e0fbfd0bb07ba69cda3", async() => {
                 BeginContext(543, 717, true);
                 WriteLiteral(@"
                         <div class=""row"">
@@ -94,7 +94,7 @@ using property_master.Models;
                                     ");
                 EndContext();
                 BeginContext(1260, 41, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8abe4789cf3146178f89014b6416416c", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "14b2c46f6f0a473aa0311ee3f6e9cdda", async() => {
                     BeginContext(1277, 15, true);
                     WriteLiteral("Choose Category");
                     EndContext();
@@ -117,7 +117,7 @@ using property_master.Models;
                 WriteLiteral("\r\n                                    ");
                 EndContext();
                 BeginContext(1339, 56, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6403d647df5f4d53937571465d66b473", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "66c76fe2cc9541afbdd25807db75624c", async() => {
                     BeginContext(1371, 15, true);
                     WriteLiteral("Houses for Sale");
                     EndContext();
@@ -139,7 +139,7 @@ using property_master.Models;
                 WriteLiteral("\r\n                                    ");
                 EndContext();
                 BeginContext(1433, 56, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3cc2d76dea534c758334b30cf812a0cc", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bd75413748114c9c86b0cdc982f4dc83", async() => {
                     BeginContext(1465, 15, true);
                     WriteLiteral("Condos for Sale");
                     EndContext();

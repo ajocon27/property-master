@@ -44,9 +44,12 @@ namespace property_master.Controllers
             var con = this.CreateConnection();
             int userid=1;
             int photo_group_id=1;
+
             string cmdText = $"insert into properties(property_name, price, address, city,province,land_size,description,bathrooms,bedrooms,address2,postalcode,user_id,category,photo_group_id) values('{property_name}', {price}, '{address}', '{city}', '{province}', {property_size}, '{description}', '{bathrooms}', '{bedrooms}', '{address2}', '{postalcode}',{userid},'{category}',{photo_group_id})";
             MySqlCommand cmd = new MySqlCommand(cmdText, con);
             cmd.ExecuteNonQuery();
+            
+
             ViewData["photo_group_id"]=photo_group_id;
             return View("add_photo");               
 

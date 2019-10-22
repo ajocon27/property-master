@@ -30,7 +30,7 @@ namespace property_master.Controllers
                 {
 
                     HttpContext.Session.SetString("user", email); // setting the the session in HttpContext
-                    HttpContext.Session.SetString("username",result["firstname"].ToString() );
+                   
                     ViewData["error"] = false;
                     ViewData["loginSuccessfull"] = true;
                     ViewData["userNotFound"] = false;
