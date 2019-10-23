@@ -49,7 +49,7 @@ namespace property_master.Models
                 property.photo_group_id = Convert.ToInt32(result1["photo_group_id"]);
                 property.property_name = result1["property_name"].ToString();
                 property.description = result1["description"].ToString();
-              
+                
                 string cmdText2 = $"select * from photos where photo_group_id={ property.photo_group_id} and main=1 ";
                 MySqlCommand cmd2 = new MySqlCommand(cmdText2, con3);
                 var result2 = cmd2.ExecuteReader();
@@ -57,19 +57,32 @@ namespace property_master.Models
                 {      
                     property.main_photo = result2["photo_url"].ToString();  
                 }
-                
 
 
-
+                con3.Close();
+                con3.Open();
                 properties.Add(property);
             }
             con.Close();
             con2.Close();
-            con3.Close();
+           
             return properties;
-
-
         }
+        public Property getall()
+        {
+            var con = this.CreateConnection();
+            List<Property> properties = new List<Property>();
+            string cmdText1 = $"select * from properties";
+            MySqlCommand cmd1 = new MySqlCommand(cmdText1, con);
+            var result1 = cmd1.ExecuteReader();
+            Property property = new Property();
+            while (result1.Read())
+            {
+                
+                property.property_id = Convert.ToInt32(result1["property_id"]);
+            }
 
-    }
+            return property;
+        }
+     }
 }

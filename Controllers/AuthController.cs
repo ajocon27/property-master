@@ -34,6 +34,7 @@ namespace property_master.Controllers
                     ViewData["error"] = false;
                     ViewData["loginSuccessfull"] = true;
                     ViewData["userNotFound"] = false;
+                    con.Close();
                     return Redirect("/");
 
                 }
@@ -42,6 +43,7 @@ namespace property_master.Controllers
                     ViewData["error"] = false;
                     ViewData["loginSuccessfull"] = false;
                     ViewData["userNotFound"] = true;
+                    con.Close();
                     return Redirect("/");
                 }
 
@@ -51,8 +53,10 @@ namespace property_master.Controllers
                 ViewData["error"] = true;
                 ViewData["loginSuccessfull"] = false;
                 ViewData["userNotFound"] = false;
+                
                 return Redirect("/");
             }
+            
         }
         [HttpPost]
         public IActionResult Register(string firstName, string lastName, string email, string password)

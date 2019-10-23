@@ -29,7 +29,19 @@ namespace property_master.Controllers
             var con = this.CreateConnection();   
             string pictureUrl = null;
 
-            string userid="1";
+            UserInfo user = new UserInfo();
+            var us = HttpContext.Session.GetString("user");
+            ViewData["profile_photo"] = user.getuser(us).profile_photo;
+            ViewData["firstname"] = user.getuser(us).firstName;
+            ViewData["lastname"] = user.getuser(us).lastName;
+            ViewData["email"] = user.getuser(us).email;
+            ViewData["password"] = user.getuser(us).password;
+            PropertyInfo properties= new PropertyInfo();
+                
+
+            
+            string userid=user.getuser(us).id.ToString(); 
+
             string userlist="1";
             string dir="wwwroot/images/"+userid+"/"+userlist;
             ArrayList dir2 = new ArrayList();
