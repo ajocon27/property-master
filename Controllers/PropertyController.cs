@@ -42,14 +42,23 @@ namespace property_master.Controllers
         {
    
             var con = this.CreateConnection();
-            int userid=1;
-            int photo_group_id=1;
+            UserInfo user = new UserInfo();
+            var us = HttpContext.Session.GetString("user");
+            ViewData["profile_photo"] = user.getuser(us).profile_photo;
+            ViewData["firstname"] = user.getuser(us).firstName;
+            ViewData["lastname"] = user.getuser(us).lastName;
+            ViewData["email"] = user.getuser(us).email;
+            ViewData["password"] = user.getuser(us).password;
+            //get properties
+            string userid=user.getuser(us).id.ToString();
+            
+           
 
-            string cmdText = $"insert into properties(property_name, price, address, city,province,land_size,description,bathrooms,bedrooms,address2,postalcode,user_id,category,photo_group_id) values('{property_name}', {price}, '{address}', '{city}', '{province}', {property_size}, '{description}', '{bathrooms}', '{bedrooms}', '{address2}', '{postalcode}',{userid},'{category}',{photo_group_id})";
+            string cmdText = $"insert into properties(property_name, price, address, city,province,land_size,description,bathrooms,bedrooms,address2,postalcode,user_id,category,photo_group_id,likes) values('{property_name}', {price}, '{address}', '{city}', '{province}', {property_size}, '{description}', '{bathrooms}', '{bedrooms}', '{address2}', '{postalcode}',{userid},'{category}','0',0);select last_insert_id();";
             MySqlCommand cmd = new MySqlCommand(cmdText, con);
             cmd.ExecuteNonQuery();
-            
-
+            int photo_group_id=Convert.ToInt32(cmd.LastInsertedId);
+             
             ViewData["photo_group_id"]=photo_group_id;
             return View("add_photo");               
 

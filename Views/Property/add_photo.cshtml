@@ -40,18 +40,16 @@ $(document).ready(function() {
         maxFileCount: 5,
         initialPreviewAsData: true,
         uploadAsync: false,
-        deleteUrl: "/site/file-delete",
-        overwriteInitial: true,
+        deleteUrl: "/FileUpload/filedelete",
+        overwriteInitial: false,
         maxFileSize: 500,
-        uploadExtraData: {
-            photogroupid: photo_group_id,
+        showRemove:false,
+        uploadExtraData: function(previewId, index) {
+            return {key: index,photogroupid: photo_group_id};
+            
         } 
   
-}).on('filebatchuploadsuccess', function(event, data) {
-       var form = data.form, files = data.files, extra = data.extra,
-        response = data.response, reader = data.reader;
-
-});
+})
 $(".file").find('.file-input').addClass( "col " );
   $(".file").find('.file-preview').addClass( "row " );
  $(".file").find('.file-drop-zone').addClass( "col " );

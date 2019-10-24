@@ -23,7 +23,7 @@ namespace property_master.Controllers
             return con; // return the created connection
         }
         [HttpPost]
-        public IActionResult uploadfile(ICollection<IFormFile> file_data,int photogroupid)
+        public IActionResult uploadfile(ICollection<IFormFile> file_data,int photogroupid,int key)
         {   
             
             var con = this.CreateConnection();   
@@ -36,22 +36,25 @@ namespace property_master.Controllers
             ViewData["lastname"] = user.getuser(us).lastName;
             ViewData["email"] = user.getuser(us).email;
             ViewData["password"] = user.getuser(us).password;
+            //get properties
+            string userid=user.getuser(us).id.ToString();
             PropertyInfo properties= new PropertyInfo();
-                
+            int count=0;
 
             
-            string userid=user.getuser(us).id.ToString(); 
+             
 
-            string userlist="1";
+            string userlist=properties.getall(userid);
             string dir="wwwroot/images/"+userid+"/"+userlist;
             ArrayList dir2 = new ArrayList();
             ArrayList initialPreview1  = new ArrayList();
             int i=0;
             int keys=1;
-           
+            
             int photogroup=photogroupid;
             string url;
-  
+            bool checkmain=false;
+            string cmdText=null;
             if(file_data!=null)
             {
  
@@ -69,11 +72,33 @@ namespace property_master.Controllers
                     dir2.Add("'https://localhost:5001/images/"+userid+"/"+userlist+"/"+fileName+"'");
                     url="https://localhost:5001/images/"+userid+"/"+userlist+"/"+fileName;
                     initialPreview1.Add("{caption: '"+fileName+"', downloadUrl: '"+dir2[i]+"', width: '120px', key: "+keys.ToString()+"}");
-                    string cmdText = $"insert into photos(photo_name,photo_url,photo_group_id) values('{fileName}','{url}',{photogroup})";
-                    MySqlCommand cmd = new MySqlCommand(cmdText, con);
+                    if(checkmain)
+                    {
+                         cmdText = $"update properties set photo_group_id='{photogroup}' where property_id={userlist}; insert into photos(photo_name,photo_url,photo_group_id,main) values('{fileName}','{url}',{photogroup},2); select COUNT(*) count from photos where photo_group_id='{photogroup} and main=1'";
+                    }
+                    else
+                    {
+                       cmdText = $"update properties set photo_group_id='{photogroup}' where property_id={userlist}; insert into photos(photo_name,photo_url,photo_group_id,main) values('{fileName}','{url}',{photogroup},1); select COUNT(*) count from photos where photo_group_id='{photogroup} and main=1'";
+                    }
+                    
+                    using (MySqlCommand cmd = new MySqlCommand(cmdText, con))
+                    {
+                        var result1 = cmd.ExecuteReader();
+                        while (result1.Read())
+                        {
+                                    
+                           count = Convert.ToInt32(result1["count"]);
+                        }
 
-                    cmd.ExecuteNonQuery();
+                    }
 
+
+                   
+                    if(count==1)
+                    {
+                       checkmain=true;        
+
+                    }
                     i++;
                     keys++;
                 }
@@ -83,12 +108,17 @@ namespace property_master.Controllers
            
             string initialPreview = string.Join(",", dir2);
           
-            string test="initialPreview: ["+initialPreview+"],initialPreviewConfig: "+initialPreviewConfig+",initialPreviewThumbTags:{append: true}";
+            string test="'{initialPreview: ["+initialPreview+"],initialPreviewConfig: "+initialPreviewConfig+",initialPreviewThumbTags:{append: true}'}";
                          
             return Json(test);
         }
- 
-        
+         [HttpPost]
+        public IActionResult filedelete()
+        {   
+
+
+            return View();
+        }
  
  
     }

@@ -12521,33 +12521,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Aj\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\Admin\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Aj\\Desktop\\programs\\property-master\\property-master.csproj",
+      "projectUniqueName": "D:\\Documents\\programs\\property-master\\property-master.csproj",
       "projectName": "property-master",
-      "projectPath": "c:\\Users\\Aj\\Desktop\\programs\\property-master\\property-master.csproj",
-      "packagesPath": "C:\\Users\\Aj\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Aj\\Desktop\\programs\\property-master\\obj\\",
+      "projectPath": "D:\\Documents\\programs\\property-master\\property-master.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "D:\\Documents\\programs\\property-master\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Aj\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

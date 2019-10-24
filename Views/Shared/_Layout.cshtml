@@ -54,45 +54,7 @@
   var username = (string)@HttpContextAccessor.HttpContext.Session.GetString("username");
 }
 
-<div class="position-absolute w-100 d-flex flex-column p-4">
-    <div class="toast ml-auto show" role="alert">
-    <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-        <!-- Position it -->
-        <div style="position: absolute; top: 0; right: 0;">
 
-          <!-- Then put toasts within -->
-          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-              <img src="" class="rounded mr-2" alt="...">
-              <strong class="mr-auto">Bootstrap</strong>
-              <small class="text-muted">just now</small>
-              <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="toast-body">
-              See? Just like this.
-            </div>
-          </div>
-
-          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-              <img src="" class="rounded mr-2" alt="...">
-              <strong class="mr-auto">Bootstrap</strong>
-              <small class="text-muted">2 seconds ago</small>
-              <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="toast-body">
-              Heads up, toasts will stack automatically
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
- 
 <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Property Master</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,27 +63,32 @@
    
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Users <span class="sr-only">(current)</span></a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" asp-controller="Property" asp-action="Property_list">Properties</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/home/profile">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/home/myads">My Ads</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Buyer</a>
-      <li class="nav-item">
-        <a class="nav-link" href="/property/add_listing">Post Ad</a>
-      </li>
-     
+    
+
+      @if(user == null)
+          {
+                           <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+
+          }
+
+           @if(user!=null)
+          {
+                <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/home/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/home/myads">My Ads</a>
+            </li>
+      
+            <li class="nav-item">
+              <a class="nav-link" href="/property/add_listing">Post Ad</a>
+            </li>
+          }
 
     </ul>
     
@@ -153,6 +120,9 @@
         @RenderBody()
   
 
+
+    </div>
+  
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -236,14 +206,6 @@
    
   </div>
 </div>
-            </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
 
         <hr />
         <footer>

@@ -12,9 +12,24 @@ namespace property_master.Controllers
     public class HomeController : Controller
     {
         public IActionResult Index()
-        {
+        {   
+            PropertyInfo properties=new PropertyInfo();
+               
+            var list= properties.getproperty();
+             ViewData["list"] = list;
             
             return View();
+        }
+        public IActionResult Search(string province, double minprice, double maxprice)
+        {   
+            PropertyInfo properties=new PropertyInfo();
+              
+            var list= properties.searchpropertybyprov(province,minprice,maxprice);
+
+
+             ViewData["list"] = list;
+            
+            return View("Index");
         }
         public IActionResult Profile()
         {
@@ -34,6 +49,27 @@ namespace property_master.Controllers
             var us= HttpContext.Session.GetString("user");     
             var list= properties.getproperty(us);
              ViewData["list"] = list;
+            return View();
+        }
+        public IActionResult view_property(string property_id)
+        {
+            PropertyInfo property = new PropertyInfo();
+            var list= property.getpropertyview(property_id);
+            ViewData["list"] = list;
+            ViewData["property_name"]=list.property_name;
+            ViewData["address"]=list.address;
+            ViewData["city"]=list.city;
+            ViewData["province"]=list.province;
+            ViewData["postalcode"]=list.postalcode;
+            ViewData["description"]=list.description;
+            ViewData["bedroom"]=list.bedrooms;
+            ViewData["bath"]=list.bathroom;
+            ViewData["size"]=list.land_size;
+            ViewData["price"]=String.Format("{0:n}", list.price);
+            ViewData["photos"]=list.photos;
+            ViewData["firstname"]=list.owner.firstName;
+            ViewData["lastname"]=list.owner.lastName;
+            ViewData["email"]=list.owner.email;
             return View();
         }
 

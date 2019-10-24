@@ -22,8 +22,10 @@
                   <p class="card-text">@p.description</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                      <a href="view_property?property_id=@p.property_id" role="button" class="btn btn-sm btn-outline-secondary">View</a>
+                    
+                       <a href="view_property?property_id=@p.property_id" role="button" class="btn btn-sm btn-outline-secondary">Edit</a>
+                     
                     </div>
                   </div>
                 </div>
